@@ -1,5 +1,6 @@
 import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class RegisterNewUserTest extends TestBase {
@@ -12,21 +13,29 @@ public class RegisterNewUserTest extends TestBase {
     By passwordField = By.cssSelector("[placeholder=\"Password\"]");
     By confirmPasswordField = By.cssSelector("[ng-reflect-name=\"confirm_password\"]");
     By loginButton = By.xpath("//*[@type=\"submit\"]");
+    By errorMessageBlock = By.id("error-message");
 
     Faker faker = new Faker();
 
 
     @Test
     public void registerNewUser() {
+        //Arrange
         String userData = faker.internet().emailAddress();
-
-        driver.findElement(loginForm).isDisplayed();
+        String password = faker.internet().password();
+        String expectedErrorMessage = "noErrorMsg";
+        //Act
+        driver.findElement(loginForm).isDispla                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         yed();
         driver.findElement(userRegistrationLink).click();
         driver.findElement(registrationForm).isDisplayed();
         fillField(userData, emailField);
-        fillField(userData, passwordField);
-        fillField(userData, confirmPasswordField);
+        fillField(password, passwordField);
+        fillField(password, confirmPasswordField);
         driver.findElement(loginButton).click();
+        String actualErrorMessage = driver.findElement(errorMessageBlock).getText();
+        //Assert
+        String err = "Actual error message is not equal expected";
+        Assert.assertEquals(actualErrorMessage, expectedErrorMessage, err);
     }
 
     public void fillField(String userData, By locator) {
