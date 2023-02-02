@@ -34,7 +34,7 @@ public class FirstSeleniumTest {
     //test
     @Test
     public void locators() {
-        driver.findElement(By.name("email")).sendKeys("test@gmail.com");
+        driver.findElement(By.cssSelector("[placeholder=\"Email\"]")).sendKeys("test@gmail.com");
         driver.findElement(By.cssSelector("[placeholder=\"Password\"]")).sendKeys("test@gmail.com");
         driver.findElement(By.cssSelector("/"));
 
