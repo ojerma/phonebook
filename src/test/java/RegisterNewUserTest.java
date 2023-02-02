@@ -56,6 +56,7 @@ public class RegisterNewUserTest extends TestBase {
         checkErrorMessage(errorMessageBlock, expectedErrorMessage);
     }
 
+
     //Negative
     @Test
     public void registerNewUserWithInvalidData() {
@@ -73,6 +74,7 @@ public class RegisterNewUserTest extends TestBase {
         checkErrorMessage(errorEmailMessageBlock, expectedEmailErrorMessage);
         checkErrorMessage(errorPasswordMaxLengthMessageBlock, expectedPasswordErrorMessage);
     }
+
 
     //Negative
     @Test
